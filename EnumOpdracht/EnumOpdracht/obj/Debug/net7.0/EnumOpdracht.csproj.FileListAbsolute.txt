@@ -1,0 +1,15 @@
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\bin\Debug\net7.0\EnumOpdracht.exe
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\bin\Debug\net7.0\EnumOpdracht.deps.json
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\bin\Debug\net7.0\EnumOpdracht.runtimeconfig.json
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\bin\Debug\net7.0\EnumOpdracht.dll
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\bin\Debug\net7.0\EnumOpdracht.pdb
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.csproj.AssemblyReference.cache
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.AssemblyInfoInputs.cache
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.AssemblyInfo.cs
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.csproj.CoreCompileInputs.cache
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.dll
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\refint\EnumOpdracht.dll
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.pdb
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\EnumOpdracht.genruntimeconfig.cache
+C:\Users\sbroe\Documents\Ma\bewijzenmap\module4\m4prog\2023P4ProgCs2\EnumOpdracht\EnumOpdracht\obj\Debug\net7.0\ref\EnumOpdracht.dll
