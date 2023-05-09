@@ -12,6 +12,20 @@ namespace ConsoleApp1
         internal string name;
         internal Element element;
 
+        public Skill()
+        {
+
+        }
+
+        internal Skill(int damage, int energyCost, string name, Element element)
+        {
+            this.damage = damage;
+            this.energyCost = energyCost;
+            this.name = name;
+            this.element = element;
+        }
+
+
         internal void UseOn(ConsoleMon target, ConsoleMon caster)
         {
 
