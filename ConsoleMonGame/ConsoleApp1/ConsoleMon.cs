@@ -8,10 +8,10 @@ namespace ConsoleApp1
 {
     internal class ConsoleMon
     {
-        internal int health, energy;
         internal string name;
-        private List<Skill> skills;
+        internal int health, energy;
         internal Element weakness;
+        internal List<Skill> skills;
 
         public ConsoleMon()
         {
