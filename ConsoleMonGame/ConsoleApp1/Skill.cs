@@ -8,9 +8,10 @@ namespace ConsoleApp1
 {
     internal class Skill
     {
-        internal int damage, energyCost;
-        internal string name;
-        internal Element element;
+        public int damage { get; set; } 
+        public int energyCost { get; set; }
+        public string name { get; set; }
+        public Element element;
 
         public Skill()
         {

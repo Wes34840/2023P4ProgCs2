@@ -60,6 +60,7 @@
             Console.WriteLine("TestFactoryFunctions");
             ConsoleMonFactory factory = new ConsoleMonFactory();
             factory.Load("monsterdata.txt");
+            factory.LoadJson("monsterdata.json");
         }
 
 

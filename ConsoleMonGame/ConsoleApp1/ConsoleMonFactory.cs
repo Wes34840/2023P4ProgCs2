@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ConsoleApp1
@@ -68,6 +69,14 @@ namespace ConsoleApp1
             skill.element = Enum.Parse<Element>(skillData[6]);
 
             return skill;
+        }
+
+        internal void LoadJson(string datafile)
+        {
+            string json = File.ReadAllText(datafile);
+            Console.WriteLine(json);
+            List<ConsoleMon> templates = JsonSerializer.Deserialize<List<ConsoleMon>>(json);
+            Console.WriteLine(templates[0].name);
         }
 
     }

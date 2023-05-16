@@ -1,0 +1,31 @@
+[
+  {
+    "health": 100,
+    "energy": 10,
+    "name": "EnterMon",
+    "weakness": 1,
+    "skills": [
+      {
+        "damage": 5,
+        "energyCost": 10,
+        "name": "KeyPress",
+        "element": 2
+      }
+    ]
+  },
+
+  {
+    "health": 90,
+    "energy": 25,
+    "name": "NewLineMon",
+    "weakness": 3,
+    "skills": [
+      {
+        "damage": 5,
+        "energyCost": 10,
+        "name": "Erase",
+        "element": 4
+      }
+    ]
+  }
+]
