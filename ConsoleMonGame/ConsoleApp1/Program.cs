@@ -9,6 +9,7 @@
             TestSkillFunctions();
             TestConstructors();
             TestFactoryFunctions();
+            TestCopySkill();
         }
         static void TestConsoleMonFunctions()
         {
@@ -61,6 +62,20 @@
             ConsoleMonFactory factory = new ConsoleMonFactory();
             factory.Load("monsterdata.txt");
             factory.LoadJson("monsterdata.json");
+        }
+        static void TestCopySkill()
+        {
+            Console.WriteLine("TestCopySkill");
+            ConsoleMonFactory factory = new ConsoleMonFactory();
+            List<ConsoleMon> templates = factory.LoadJson("monsterdata.json");
+            Skill copyFrom = templates[0].skills[0];
+
+            Skill copy = factory.CopySkill(copyFrom);
+            Console.WriteLine(copy.name == copyFrom.name);
+            Console.WriteLine(copy.damage == copyFrom.damage);
+            Console.WriteLine(copy.element == copyFrom.element);
+            copy.name = "anders";
+            Console.WriteLine(copy.name != copyFrom.name);
         }
 
 

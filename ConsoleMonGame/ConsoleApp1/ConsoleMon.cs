@@ -11,8 +11,8 @@ namespace ConsoleApp1
         public int health { get; set; }
         public int energy { get; set; }
         public string name { get; set; }
-        public Element weakness;
-        public List<Skill> skills;
+        public Element weakness { get; set; }
+        public List<Skill> skills { get; set; }
 
         public ConsoleMon()
         {

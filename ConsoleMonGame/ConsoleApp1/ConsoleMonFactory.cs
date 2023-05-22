@@ -71,13 +71,25 @@ namespace ConsoleApp1
             return skill;
         }
 
-        internal void LoadJson(string datafile)
+        internal List<ConsoleMon> LoadJson(string datafile)
         {
             string json = File.ReadAllText(datafile);
-            Console.WriteLine(json);
             List<ConsoleMon> templates = JsonSerializer.Deserialize<List<ConsoleMon>>(json);
             Console.WriteLine(templates[0].name);
+
+            return templates;
         }
 
+        internal Skill CopySkill(Skill copyFrom)
+        {
+            Skill copyResult = new Skill();
+
+            copyResult.name= copyFrom.name;
+            copyResult.damage = copyFrom.damage;
+            copyResult.energyCost = copyFrom.energyCost;
+            copyResult.element = copyFrom.element;
+
+            return copyResult;
+        }
     }
 }
