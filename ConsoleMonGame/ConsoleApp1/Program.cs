@@ -4,13 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            TestConsoleMonFunctions();
-            TestSkillFunctions();
-            TestConstructors();
-            TestFactoryFunctions();
-            TestCopySkill();
-            TestCopyConsoleMon();
+            TestArena();
         }
         static void TestConsoleMonFunctions()
         {
@@ -96,6 +90,14 @@
             Console.WriteLine(copy.skills[0].name != copyFrom.skills[0].name);
         }
 
+        static void TestArena()
+        {
+            Arena arena = new Arena();
 
+            ConsoleMonFactory factory = new ConsoleMonFactory();
+            List<ConsoleMon> fighters = factory.LoadJson("monsterdata.json");
+
+            arena.Fight(fighters[0], fighters[1]);
+        }
     }
 }
