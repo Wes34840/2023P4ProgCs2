@@ -75,7 +75,6 @@ namespace ConsoleApp1
         {
             string json = File.ReadAllText(datafile);
             List<ConsoleMon> templates = JsonSerializer.Deserialize<List<ConsoleMon>>(json);
-            Console.WriteLine(templates[0].name);
 
             return templates;
         }
@@ -89,6 +88,22 @@ namespace ConsoleApp1
             copyResult.energyCost = copyFrom.energyCost;
             copyResult.element = copyFrom.element;
 
+            return copyResult;
+        }   
+
+        internal ConsoleMon CopyConsoleMon(ConsoleMon copyFrom)
+        {
+            ConsoleMon copyResult = new ConsoleMon();
+
+            copyResult.name = copyFrom.name;
+            copyResult.health = copyFrom.health;
+            copyResult.energy = copyFrom.energy;
+            copyResult.weakness = copyFrom.weakness;
+            copyResult.skills = new List<Skill>();
+            foreach (Skill skill in copyFrom.skills)
+            {
+                copyResult.skills.Add(CopySkill(skill));
+            }
             return copyResult;
         }
     }

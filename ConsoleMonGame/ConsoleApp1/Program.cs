@@ -10,6 +10,7 @@
             TestConstructors();
             TestFactoryFunctions();
             TestCopySkill();
+            TestCopyConsoleMon();
         }
         static void TestConsoleMonFunctions()
         {
@@ -76,6 +77,23 @@
             Console.WriteLine(copy.element == copyFrom.element);
             copy.name = "anders";
             Console.WriteLine(copy.name != copyFrom.name);
+        }
+        static void TestCopyConsoleMon()
+        {
+            Console.WriteLine("TestCopyConsoleMon");
+            ConsoleMonFactory factory = new ConsoleMonFactory();
+            List<ConsoleMon> templates = factory.LoadJson("monsterdata.json");
+            ConsoleMon copyFrom = templates[0];
+
+            ConsoleMon copy = factory.CopyConsoleMon(copyFrom);
+            Console.WriteLine(copy.name == copyFrom.name);
+            Console.WriteLine(copy.health == copyFrom.health);
+            Console.WriteLine(copy.skills == copyFrom.skills); // the skills of the consolemon copy are not the same as the original
+            Console.WriteLine(copy.skills[0] == copyFrom.skills[0]);
+            copy.name = "anders";
+            copy.skills[0].name = "newskill";
+            Console.WriteLine(copy.name != copyFrom.name);
+            Console.WriteLine(copy.skills[0].name != copyFrom.skills[0].name);
         }
 
 
