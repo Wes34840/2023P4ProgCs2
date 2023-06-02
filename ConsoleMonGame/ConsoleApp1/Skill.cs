@@ -38,6 +38,8 @@ namespace ConsoleApp1
                 target.TakeDamage(damage / 2);
             }
 
+            Console.WriteLine("It's super effective!");
+            Console.WriteLine(string.Empty);
         }
     }
 }

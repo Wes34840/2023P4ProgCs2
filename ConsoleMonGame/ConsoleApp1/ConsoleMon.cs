@@ -37,5 +37,13 @@ namespace ConsoleApp1
         {
             this.energy -= energy;
         }
+
+        internal void Rest()
+        {
+            Random rand = new Random();
+            int energyRecovery = rand.Next(20, 35);
+            energy += energyRecovery;
+        }
+
     }
 }
