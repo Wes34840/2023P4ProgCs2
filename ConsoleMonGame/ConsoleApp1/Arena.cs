@@ -20,7 +20,6 @@ namespace ConsoleApp1
             {
                 while (fighterPL.health >= 0 && fighterAI.health >= 0)
                 {
-                    Console.Clear();
                     DisplayConsoleMonStats(fighterPL, fighterAI);
                     PlayTurn(fighterPL, fighterAI);
                 }
@@ -58,6 +57,7 @@ namespace ConsoleApp1
             {
                 fighter.Rest();
                 Console.WriteLine(fighter.name + " used Rest and regained some energy");
+                Console.WriteLine(string.Empty);
                 return;
             }
 
@@ -92,12 +92,11 @@ namespace ConsoleApp1
         {
             if (fighterA.health < 0)
             {
-                Console.WriteLine("at least you tried");
                 ConsoleMon[] AvailableConsoleMon = RosterA.Where(c => c.health > 0).ToArray();
                 if (AvailableConsoleMon.Length > 0)
                 {
-                    Console.WriteLine("Replaced A");
                     fighterPL = AvailableConsoleMon[0];
+                    Console.WriteLine($"Player sent out {fighterPL.name}");
                 }
                 else
                 {
@@ -109,10 +108,8 @@ namespace ConsoleApp1
                 ConsoleMon[] AvailableConsoleMon = RosterB.Where(c => c.health > 0).ToArray();
                 if (AvailableConsoleMon.Length > 0)
                 {
-                    Console.WriteLine("Replaced B");
                     fighterAI = AvailableConsoleMon[0];
-                    Console.WriteLine(fighterB.name);
-                    Console.WriteLine(fighterB.health);
+                    Console.WriteLine($"AI sent out {fighterAI.name}");
                 }
                 else 
                 { 
