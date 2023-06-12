@@ -41,8 +41,21 @@ namespace ConsoleApp1
         internal void Rest()
         {
             Random rand = new Random();
-            int energyRecovery = rand.Next(20, 35);
-            energy += energyRecovery;
+            int energyRecovery = rand.Next(20, 30);
+            if (energy < 50)
+            {
+                Console.WriteLine($"{name} used Rest and regained some energy");
+                energy += energyRecovery;
+                if (energy > 50)
+                {
+                    energy = 50;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{name} already has max energy");
+            }
+            Console.WriteLine(string.Empty);
         }
 
     }

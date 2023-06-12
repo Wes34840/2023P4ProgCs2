@@ -96,8 +96,8 @@
 
             ConsoleMonFactory factory = new ConsoleMonFactory();
             List<ConsoleMon> fighters = factory.LoadJson("monsterdata.json");
-            Roster rosterA = new Roster("RosterA", new ConsoleMon[] { fighters[0], fighters[2] }); 
-            Roster rosterB = new Roster("RosterB", new ConsoleMon[] { fighters[1], fighters[3] });
+            Roster rosterA = new Roster("RosterA", new ConsoleMon[] { fighters[3], fighters[2] }); 
+            Roster rosterB = new Roster("RosterB", new ConsoleMon[] { fighters[1], fighters[0] });
             arena.Fight(rosterA, rosterB);
         }
     }

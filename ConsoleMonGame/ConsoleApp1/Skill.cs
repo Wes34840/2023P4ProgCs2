@@ -36,10 +36,9 @@ namespace ConsoleApp1
             if (target.weakness == element)
             {
                 target.TakeDamage(damage / 2);
+                Console.WriteLine("It's super effective! \n");
             }
 
-            Console.WriteLine("It's super effective!");
-            Console.WriteLine(string.Empty);
         }
     }
 }

@@ -10,12 +10,12 @@ namespace ConsoleApp1
 {
     internal class Arena
     {
-        bool FightActive = true;
         ConsoleMon fighterPL, fighterAI;
         internal void Fight(Roster RosterPL, Roster RosterAI)
         {
             fighterPL = RosterPL.lineUp[0];
             fighterAI = RosterAI.lineUp[0];
+            Console.WriteLine("\n\n");
             while (!Array.TrueForAll(RosterPL.lineUp, c => c.health < 0) && !Array.TrueForAll(RosterAI.lineUp, c => c.health < 0))
             {
                 while (fighterPL.health >= 0 && fighterAI.health >= 0)
@@ -28,25 +28,74 @@ namespace ConsoleApp1
             Roster[] rosters = new Roster[] { RosterPL, RosterAI };
             
             Roster Winner = Array.Find(rosters, r => Array.Exists(r.lineUp, c => c.health > 0)); // I did a thing
-            Console.WriteLine(string.Empty);
+
             Console.WriteLine($"{Winner.name} has won the battle");
         }
 
         internal void PlayTurn(ConsoleMon fighterA, ConsoleMon fighterB)
         {
-            UseSkill(fighterA, fighterB);
+            ShowUI();
+            PlayerTurn();
+
             if (CheckIfFainted(fighterB))
             {
-                Console.WriteLine(fighterB.name + " fucking died");
+                Console.WriteLine($"{fighterB.name} fucking died\n");
                 return;
             }
+
             UseSkill(fighterB, fighterA);
             if (CheckIfFainted(fighterA))
             {
-                Console.WriteLine(fighterA.name + " fucking died");
+                Console.WriteLine($"{fighterA.name} fucking died\n");
                 return;
             }
         }
+        internal void ShowUI()
+        {
+            Console.WriteLine("Choose your move\n");
+
+            foreach (Skill skill in fighterPL.skills)
+            {
+                Console.WriteLine($"Name: {skill.name} \nDamage: {skill.damage} \t Energy Cost: {skill.energyCost} \t Element: {skill.element}\n");
+            }
+            Console.WriteLine($"Rest: \nSkip your turn and regain energy \n");
+        }
+
+        internal void PlayerTurn()
+        {
+            
+            string input = Console.ReadLine().ToLower();
+            if (fighterPL.skills.Exists(i => i.name.ToLower() == input))
+            {
+                List<Skill> useMove = fighterPL.skills.Where(i => i.name.ToLower() == input).ToList();
+                
+                if (useMove[0].energyCost > fighterPL.energy)
+                {
+                    Console.WriteLine($"{fighterPL.name} has too little energy for this move, try another or rest");
+                    PlayerTurn();
+                    return;
+                }
+
+                Console.Clear();
+                Console.WriteLine("\n\n");
+
+                Console.WriteLine($"{fighterPL.name} used {useMove[0].name} \n");
+                useMove[0].UseOn(fighterAI, fighterPL);
+            }
+            else if (input.ToLower() == "rest")
+            {
+                Console.Clear();
+                Console.WriteLine("\n\n");
+                fighterPL.Rest();
+            }
+            else
+            {
+                Console.WriteLine("Invalid skill name, try again");
+                PlayerTurn();
+            }
+        }
+        
+        
 
         internal void UseSkill(ConsoleMon fighter, ConsoleMon target)
         {
@@ -56,33 +105,19 @@ namespace ConsoleApp1
             if (availableSkills.Count == 0)
             {
                 fighter.Rest();
-                Console.WriteLine(fighter.name + " used Rest and regained some energy");
-                Console.WriteLine(string.Empty);
                 return;
             }
 
             Skill usedMove = availableSkills[rand.Next(availableSkills.Count)];
-            Console.WriteLine(fighter.name + " used " + usedMove.name);
-
-            Console.WriteLine(string.Empty);
-
-            Console.WriteLine(target.name + " took " + usedMove.damage + " damage");
-
-            Console.WriteLine(string.Empty);
+            Console.WriteLine($"{fighter.name} used {usedMove.name} \n");
 
             usedMove.UseOn(target, fighter);
         }
 
         internal void DisplayConsoleMonStats(ConsoleMon fighterA, ConsoleMon fighterB)
         {
-            Console.WriteLine(fighterA.name);
-            Console.WriteLine($"Health: {fighterA.health}");
-            Console.WriteLine($"Energy: {fighterA.energy}");
-            Console.WriteLine(string.Empty);
-            Console.WriteLine(fighterB.name);
-            Console.WriteLine($"Health: {fighterB.health}");
-            Console.WriteLine($"Energy: {fighterB.energy}");
-            Console.WriteLine(string.Empty);
+            Console.WriteLine($"{fighterA.name} \nHealth: {fighterA.health} \nEnergy: {fighterA.energy} \n");
+            Console.WriteLine($"{fighterB.name} \nHealth: {fighterB.health} \nEnergy: {fighterB.energy} \n");
         }
         internal bool CheckIfFainted(ConsoleMon fighter)
         {
@@ -96,7 +131,7 @@ namespace ConsoleApp1
                 if (AvailableConsoleMon.Length > 0)
                 {
                     fighterPL = AvailableConsoleMon[0];
-                    Console.WriteLine($"Player sent out {fighterPL.name}");
+                    Console.WriteLine($"Player sent out {fighterPL.name} \n");
                 }
                 else
                 {
@@ -109,7 +144,7 @@ namespace ConsoleApp1
                 if (AvailableConsoleMon.Length > 0)
                 {
                     fighterAI = AvailableConsoleMon[0];
-                    Console.WriteLine($"AI sent out {fighterAI.name}");
+                    Console.WriteLine($"AI sent out {fighterAI.name} \n");
                 }
                 else 
                 { 
@@ -117,5 +152,6 @@ namespace ConsoleApp1
                 }
             }
         }
+
     }
 }
