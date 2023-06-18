@@ -19,7 +19,6 @@ namespace ConsoleApp1
             this.RosterAI = RosterAI;
             fighterPL = RosterPL.lineUp[0];
             fighterAI = RosterAI.lineUp[0];
-            Console.WriteLine("\n\n");
             while (!Array.TrueForAll(RosterPL.lineUp, c => c.health < 0) && !Array.TrueForAll(RosterAI.lineUp, c => c.health < 0))
             {
                 while (fighterPL.health >= 0 && fighterAI.health >= 0)
@@ -84,7 +83,7 @@ namespace ConsoleApp1
         internal void InitiatePlayerSwitch()
         {
             Console.Clear();
-            DisplayConsoleMon();
+            DisplayPlayerConsoleMon();
             Console.WriteLine("\nWhich consolemon do you wish to send out? \n");
             ConsoleMon chosen = PlayerSwitchInput();
             while (chosen == null)
@@ -114,7 +113,7 @@ namespace ConsoleApp1
             return chosenConsoleMon[0];
             
         }
-        internal void DisplayConsoleMon()
+        internal void DisplayPlayerConsoleMon()
         {
             foreach (ConsoleMon consolemon in RosterPL.lineUp)
             {
@@ -161,7 +160,6 @@ namespace ConsoleApp1
                 }
 
                 Console.Clear();
-                Console.WriteLine("\n\n");
 
                 Console.WriteLine($"{fighterPL.name} used {useMove[0].name} \n");
                 useMove[0].UseOn(fighterAI, fighterPL);
@@ -169,7 +167,6 @@ namespace ConsoleApp1
             else if (input.ToLower() == "rest")
             {
                 Console.Clear();
-                Console.WriteLine("\n\n");
                 fighterPL.Rest();
             }
             else
@@ -209,8 +206,13 @@ namespace ConsoleApp1
         {
             if (fighterA.health < 0)
             {
-                Console.WriteLine($"{fighterPL.name} has fainted");
-                InitiatePlayerSwitch();
+                if (RosterA.Where(c => c.health > 0).ToArray().Length != 0)
+                {
+                    Console.WriteLine($"{fighterPL.name} has fainted");
+                    InitiatePlayerSwitch();
+                }
+                return;
+                
             }
             else if (fighterB.health < 0)
             {

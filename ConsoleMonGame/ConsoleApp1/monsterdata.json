@@ -6,7 +6,7 @@
     "weakness": 1,
     "skills": [
       {
-        "damage": 8,
+        "damage": 16,
         "energyCost": 5,
         "name": "KeyPress",
         "element": 2
@@ -27,7 +27,7 @@
     "weakness": 2,
     "skills": [
       {
-        "damage": 5,
+        "damage": 15,
         "energyCost": 5,
         "name": "Backspace",
         "element": 1
