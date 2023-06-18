@@ -24,9 +24,9 @@ namespace ConsoleApp1
                 while (fighterPL.health >= 0 && fighterAI.health >= 0)
                 {
                     DisplayConsoleMonStats(fighterPL, fighterAI);
-                    PlayTurn(fighterPL, fighterAI);
+                    GameCycle();
                 }
-                ReplaceDeadConsoleMon(RosterPL.lineUp, fighterPL, RosterAI.lineUp, fighterAI);
+                ReplaceDeadConsoleMon();
             }
             Roster[] rosters = new Roster[] { RosterPL, RosterAI };
             
@@ -35,24 +35,25 @@ namespace ConsoleApp1
             Console.WriteLine($"{Winner.name} has won the battle");
         }
 
-        internal void PlayTurn(ConsoleMon fighterA, ConsoleMon fighterB)
+        internal void GameCycle()
         {
             ShowUI();
             PlayerTurn();
 
-            if (CheckIfFainted(fighterB))
+            if (CheckIfFainted(fighterAI))
             {
-                Console.WriteLine($"{fighterB.name} fucking died\n");
+                Console.WriteLine($"{fighterPL.name} fucking died\n");
                 return;
             }
 
-            UseSkill(fighterB, fighterA);
-            if (CheckIfFainted(fighterA))
+            UseSkill(fighterAI, fighterPL);
+            if (CheckIfFainted(fighterAI))
             {
-                Console.WriteLine($"{fighterA.name} fucking died\n");
+                Console.WriteLine($"{fighterPL.name} fucking died\n");
                 return;
             }
         }
+
         internal void ShowUI()
         {
             Console.WriteLine("Choose your move\n");
@@ -66,7 +67,6 @@ namespace ConsoleApp1
 
         internal void PlayerTurn()
         {
-            
             string input = Console.ReadLine().ToLower();
 
             if (input == "switch")
@@ -77,9 +77,8 @@ namespace ConsoleApp1
             {
                 PlayerAttack(input);
             }
-
-            
         }
+
         internal void InitiatePlayerSwitch()
         {
             Console.Clear();
@@ -111,8 +110,8 @@ namespace ConsoleApp1
             }
 
             return chosenConsoleMon[0];
-            
         }
+
         internal void DisplayPlayerConsoleMon()
         {
             foreach (ConsoleMon consolemon in RosterPL.lineUp)
@@ -139,6 +138,7 @@ namespace ConsoleApp1
                 }
             }
         }
+
         internal void SwitchConsoleMon(ConsoleMon switchTo)
         {
             Console.Clear();
@@ -146,6 +146,7 @@ namespace ConsoleApp1
             fighterPL = switchTo;
             Console.WriteLine($"{RosterPL.name} sent out {fighterPL.name}. \n");
         }
+
         internal void PlayerAttack(string input)
         {
             if (fighterPL.skills.Exists(i => i.name.ToLower() == input))
@@ -198,15 +199,17 @@ namespace ConsoleApp1
             Console.WriteLine($"{fighterA.name} \nHealth: {fighterA.health} \nEnergy: {fighterA.energy} \n");
             Console.WriteLine($"{fighterB.name} \nHealth: {fighterB.health} \nEnergy: {fighterB.energy} \n");
         }
+
         internal bool CheckIfFainted(ConsoleMon fighter)
         {
             return fighter.health <= 0;
         }
-        internal void ReplaceDeadConsoleMon(ConsoleMon[] RosterA, ConsoleMon fighterA, ConsoleMon[] RosterB, ConsoleMon fighterB)
+
+        internal void ReplaceDeadConsoleMon()
         {
-            if (fighterA.health < 0)
+            if (fighterPL.health < 0)
             {
-                if (RosterA.Where(c => c.health > 0).ToArray().Length != 0)
+                if (RosterPL.lineUp.Where(c => c.health > 0).ToArray().Length != 0)
                 {
                     Console.WriteLine($"{fighterPL.name} has fainted");
                     InitiatePlayerSwitch();
@@ -214,9 +217,9 @@ namespace ConsoleApp1
                 return;
                 
             }
-            else if (fighterB.health < 0)
+            else if (fighterAI.health < 0)
             {
-                ConsoleMon[] AvailableConsoleMon = RosterB.Where(c => c.health > 0).ToArray();
+                ConsoleMon[] AvailableConsoleMon = RosterAI.lineUp.Where(c => c.health > 0).ToArray();
                 if (AvailableConsoleMon.Length > 0)
                 {
                     fighterAI = AvailableConsoleMon[0];
