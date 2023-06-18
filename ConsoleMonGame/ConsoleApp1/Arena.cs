@@ -11,8 +11,12 @@ namespace ConsoleApp1
     internal class Arena
     {
         ConsoleMon fighterPL, fighterAI;
+        Roster RosterPL, RosterAI;
+        
         internal void Fight(Roster RosterPL, Roster RosterAI)
         {
+            this.RosterPL = RosterPL;
+            this.RosterAI = RosterAI;
             fighterPL = RosterPL.lineUp[0];
             fighterAI = RosterAI.lineUp[0];
             Console.WriteLine("\n\n");
@@ -58,17 +62,97 @@ namespace ConsoleApp1
             {
                 Console.WriteLine($"Name: {skill.name} \nDamage: {skill.damage} \t Energy Cost: {skill.energyCost} \t Element: {skill.element}\n");
             }
-            Console.WriteLine($"Rest: \nSkip your turn and regain energy \n");
+            Console.WriteLine($"Rest: \nSkip your turn and regain energy \n\nType switch if you want to switch ConsoleMon\n");
         }
 
         internal void PlayerTurn()
         {
             
             string input = Console.ReadLine().ToLower();
+
+            if (input == "switch")
+            {
+                InitiatePlayerSwitch();
+            }
+            else
+            {
+                PlayerAttack(input);
+            }
+
+            
+        }
+        internal void InitiatePlayerSwitch()
+        {
+            Console.Clear();
+            DisplayConsoleMon();
+            Console.WriteLine("\nWhich consolemon do you wish to send out? \n");
+            ConsoleMon chosen = PlayerSwitchInput();
+            while (chosen == null)
+            {
+                chosen = PlayerSwitchInput();
+            }
+            SwitchConsoleMon(chosen);
+        }
+        
+        internal ConsoleMon PlayerSwitchInput()
+        {
+            string input = Console.ReadLine();
+            if (input.ToLower() == fighterPL.name.ToLower())
+            {
+                Console.WriteLine($"{fighterPL.name} is already on the field, try again");
+                return null;
+            }
+
+            ConsoleMon[] chosenConsoleMon = RosterPL.lineUp.Where(c => c.name.ToLower() == input.ToLower()).ToArray();
+
+            if (chosenConsoleMon.Length == 0)
+            {
+                Console.WriteLine($"{input} is not a valid ConsoleMon, try again \n");
+                return null;
+            }
+
+            return chosenConsoleMon[0];
+            
+        }
+        internal void DisplayConsoleMon()
+        {
+            foreach (ConsoleMon consolemon in RosterPL.lineUp)
+            {
+                string noteCurrent = "";
+                string noteFainted = "";
+                if (consolemon.name ==  fighterPL.name) 
+                {
+                    noteCurrent = "(Currently out)";
+                }
+                if (consolemon.health <= 0)
+                {
+                    noteFainted = "Fainted";
+                }
+                Console.WriteLine($"\n{consolemon.name} \t {noteCurrent}");
+                
+                if (noteFainted == "") 
+                {
+                    Console.WriteLine($"Health: {consolemon.health} \nEnergy: {consolemon.energy} ");
+                }
+                else
+                {
+                    Console.WriteLine(noteFainted);
+                }
+            }
+        }
+        internal void SwitchConsoleMon(ConsoleMon switchTo)
+        {
+            Console.Clear();
+            Console.WriteLine($"{RosterPL.name} returned {fighterPL.name}. \n");
+            fighterPL = switchTo;
+            Console.WriteLine($"{RosterPL.name} sent out {fighterPL.name}. \n");
+        }
+        internal void PlayerAttack(string input)
+        {
             if (fighterPL.skills.Exists(i => i.name.ToLower() == input))
             {
                 List<Skill> useMove = fighterPL.skills.Where(i => i.name.ToLower() == input).ToList();
-                
+
                 if (useMove[0].energyCost > fighterPL.energy)
                 {
                     Console.WriteLine($"{fighterPL.name} has too little energy for this move, try another or rest");
@@ -90,12 +174,10 @@ namespace ConsoleApp1
             }
             else
             {
-                Console.WriteLine("Invalid skill name, try again");
+                Console.WriteLine("Invalid input, try again");
                 PlayerTurn();
             }
         }
-        
-        
 
         internal void UseSkill(ConsoleMon fighter, ConsoleMon target)
         {
@@ -127,16 +209,8 @@ namespace ConsoleApp1
         {
             if (fighterA.health < 0)
             {
-                ConsoleMon[] AvailableConsoleMon = RosterA.Where(c => c.health > 0).ToArray();
-                if (AvailableConsoleMon.Length > 0)
-                {
-                    fighterPL = AvailableConsoleMon[0];
-                    Console.WriteLine($"Player sent out {fighterPL.name} \n");
-                }
-                else
-                {
-                    return;
-                }
+                Console.WriteLine($"{fighterPL.name} has fainted");
+                InitiatePlayerSwitch();
             }
             else if (fighterB.health < 0)
             {
