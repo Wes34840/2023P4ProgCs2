@@ -1,0 +1,86 @@
+{
+  "data":
+  [
+    {
+      "health": 100,
+      "energy": 10,
+      "name": "EnterMon",
+      "weakness": 1,
+      "skills": [
+        {
+          "damage": 16,
+          "energyCost": 5,
+          "name": "KeyPress",
+          "element": 2
+        },
+        {
+          "damage": 25,
+          "energyCost": 20,
+          "name": "Keyboard Smash",
+          "element": 4
+        }
+      ]
+    },
+
+    {
+      "health": 90,
+      "energy": 25,
+      "name": "BackspaceMon",
+      "weakness": 2,
+      "skills": [
+        {
+          "damage": 15,
+          "energyCost": 5,
+          "name": "Backspace",
+          "element": 1
+        },
+        {
+          "damage": 15,
+          "energyCost": 10,
+          "name": "Remove",
+          "element": 3
+        }
+      ]
+    },
+    {
+      "health": 150,
+      "energy": 25,
+      "name": "NewLineMon",
+      "weakness": 3,
+      "skills": [
+        {
+          "damage": 10,
+          "energyCost": 7,
+          "name": "Erase",
+          "element": 4
+        },
+        {
+          "damage": 25,
+          "energyCost": 15,
+          "name": "Delete Key",
+          "element": 0
+        }
+      ]
+    },
+    {
+      "health": 80,
+      "energy": 25,
+      "name": "ClipboardMon",
+      "weakness": 3,
+      "skills": [
+        {
+          "damage": 1,
+          "energyCost": 5,
+          "name": "Copy",
+          "element": 4
+        },
+        {
+          "damage": 200,
+          "energyCost": 30,
+          "name": "Paste the entire fucking bee movie script",
+          "element": 0
+        }
+      ]
+    }
+  ]
+}
